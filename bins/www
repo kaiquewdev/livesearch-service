@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+// file: bins/www - created at 2015-01-13, 11:49
+var www = require('commander');
+var app = require('../app');
+
+www
+  //.version('0.0.1')
+  .option('-p, --port <number>', 'Port number', parseInt)
+  //.command('', '')
+  .parse(process.argv);
+
+www.port = (www.port || 3000);
+
+function listenHandler() {
+  console.log('app listening on port %s', www.port);
+}
+app.listen(www.port, listenHandler);
